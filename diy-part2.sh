@@ -14,3 +14,10 @@
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
+
+#修改主机名
+sed -i 's/OpenWrt/Xiaomi-AX6S/g' package/base-files/files/bin/config_generate
+
+#rm -r package/lean/luci-theme-argon
+
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Makefile
