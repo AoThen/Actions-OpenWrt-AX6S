@@ -8,16 +8,26 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: Build OpenWrt AX6S
 
 on:
   repository_dispatch:
   workflow_dispatch:
-    # inputs:
-    #   ssh:
-    #     description: 'SSH connection to Actions'
-    #     required: false
-    #     default: 'false'
+    inputs:
+      # ssh:
+      #   description: 'SSH connection to Actions'
+      #   required: false
+      #   default: 'false'
+      record:
+        description: '输入版本描述'     
+        required: false
+        default: '升级内容：内核升级，更新应用版本'
+        type: string
+      release:
+        description: '上传到release'
+        required: false
+        default: true
+        type: boolean
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -30,7 +40,7 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: true
+  # UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -156,12 +166,11 @@ jobs:
 
     - name: Generate release tag
       id: tag
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: inputs.release == 'true' && !cancelled() && env.RELEASE_FIRMWARE_VALUE != ''
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
-        [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
-        [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
+        echo "${{ inputs.record }}" >> release.txt
         echo "::set-output name=status::success"
 
     - name: Upload firmware to release
@@ -178,13 +187,13 @@ jobs:
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
-        keep_minimum_runs: 3
+        keep_minimum_runs: 5
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 3
+        keep_latest: 5
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_FIRMWARE }}
