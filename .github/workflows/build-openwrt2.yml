@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt AX6S
+name: Build OpenWrt AX6S (openwrt官方)
 # 触发工作流程的事件
 # on:
 #   push:
