@@ -9,7 +9,13 @@
 #
 
 name: Build OpenWrt AX6S
-
+# 触发工作流程的事件
+# on:
+#   push:
+#     branches:
+#       - main
+#       - "releases/**"
+#       - dev
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -40,7 +46,7 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
-  # UPLOAD_RELEASE: true
+  Remove_Old_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -166,7 +172,7 @@ jobs:
 
     - name: Generate release tag
       id: tag
-      if: inputs.release == 'true' && !cancelled() && env.RELEASE_FIRMWARE_VALUE != ''
+      if: inputs.release == 'true' && !cancelled()
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
@@ -191,7 +197,7 @@ jobs:
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: env.Remove_Old_RELEASE == 'true' && !cancelled()
       with:
         keep_latest: 5
         delete_tags: true
