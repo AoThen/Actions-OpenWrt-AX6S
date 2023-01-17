@@ -23,5 +23,5 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 
 #添加额外软件包
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-git clone https://github.com/openwrt/packages/tree/openwrt-21.02/net/adguardhome package/luci-app-adguardhome
+git clone https://github.com/openwrt/packages/tree/openwrt-21.02/net/adguardhome package/adguardhome
 
