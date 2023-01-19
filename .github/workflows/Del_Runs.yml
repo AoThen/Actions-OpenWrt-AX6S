@@ -56,7 +56,6 @@ jobs:
       #     delete_run_by_conclusion_pattern: ${{ github.event.inputs.delete_run_by_conclusion_pattern }}
       #     dry_run: ${{ github.event.inputs.dry_run }}
 
-    steps:
       - name: Delete workflow runs
         uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
         with:
