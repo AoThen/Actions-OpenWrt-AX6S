@@ -15,6 +15,9 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 # Timezone
 sed -i '/timezone='\''UTC'\''/a\\t\tset system.@system[-1].zonename='\''Asia/Shanghai'\''' package/base-files/files/bin/config_generate
 
+# 修改默认wifi名称ssid为Xiaomi_AX6S
+sed -i 's/ssid=OpenWrt/ssid=Xiaomi_AX6S/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 
 #修改主机名
