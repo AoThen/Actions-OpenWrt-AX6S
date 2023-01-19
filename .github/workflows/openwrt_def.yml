@@ -146,7 +146,7 @@ jobs:
         echo "release_tag=$(date +"%Y.%m.%d-%H:%M")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "${{ inputs.record }}" >> release.txt
-		echo "status=success" >> $GITHUB_OUTPUT
+        echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
