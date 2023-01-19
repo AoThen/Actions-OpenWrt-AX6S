@@ -40,9 +40,6 @@ env:
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: false
-  Remove_Old_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -141,12 +138,12 @@ jobs:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-#$(date +"%Y.%m.%d-%H%M")
+
     - name: Generate release tag
       id: tag
       if: inputs.release == true && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H:%M")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "${{ inputs.record }}" >> release.txt
 		echo "status=success" >> $GITHUB_OUTPUT
@@ -160,31 +157,3 @@ jobs:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
-
-
-    - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@v2
-      with:
-        token: ${{ secrets.RELEASE_FIRMWARE }}
-        repository: ${{ github.repository }}
-        retain_days: 30
-        keep_minimum_runs: 6
-
-    # - name: Remove old Releases
-    #   uses: dev-drprasad/delete-older-releases@v0.1.0
-    #   if: env.Remove_Old_RELEASE == 'true' && !cancelled()
-    #   with:
-    #     keep_latest: 5
-    #     delete_tags: true
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.RELEASE_FIRMWARE }}
-
-    - name: Remove old Releases
-    - uses: dev-drprasad/delete-older-releases@v0.2.0
-      if: env.Remove_Old_RELEASE == 'true' && !cancelled()
-      with:
-        # repo: <owner>/<repoName> # defaults to current repo
-        keep_latest: 5
-        delete_tag_pattern: beta # defaults to ""
-      env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_FIRMWARE }}
