@@ -1,3 +1,11 @@
+# Actions-OpenWrt-AX6S 自用编译版
+
+区分OpenWrt和lede版本
+
+外部源openclash和adguardhome
+
+---
+
 **English** | [中文](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
 
 # Actions-OpenWrt
