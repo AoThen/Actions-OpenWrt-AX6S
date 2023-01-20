@@ -4634,7 +4634,7 @@ CONFIG_PACKAGE_luci-app-ttyd=y
 # CONFIG_PACKAGE_luci-app-udpxy is not set
 # CONFIG_PACKAGE_luci-app-uhttpd is not set
 # CONFIG_PACKAGE_luci-app-unbound is not set
-# CONFIG_PACKAGE_luci-app-upnp is not set
+CONFIG_PACKAGE_luci-app-upnp=y
 # CONFIG_PACKAGE_luci-app-vnstat is not set
 # CONFIG_PACKAGE_luci-app-vnstat2 is not set
 CONFIG_PACKAGE_luci-app-watchcat=y
@@ -6838,11 +6838,8 @@ CONFIG_PACKAGE_watchcat=y
 # end of Font-Utils
 # end of Xorg
 
-
+#自定义
 CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
-CONFIG_PACKAGE_luci-app-adguardhome=y
-# CONFIG_PACKAGE_adguardhome=y
 CONFIG_PACKAGE_luci-app-openclash=y
-# CONFIG_PACKAGE_luci-app-nlbwmon=y
-CONFIG_PACKAGE_luci-theme-argon=y
+
 
