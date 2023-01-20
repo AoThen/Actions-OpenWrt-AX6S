@@ -3,7 +3,7 @@
 # Description: Delete older releases and workflows runs
 #==========================================================================
 
-name: Delete older releases and workflows
+name: Delete older releases and workflows (测试)
 
 on:
   repository_dispatch:
