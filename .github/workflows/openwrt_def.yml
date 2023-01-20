@@ -143,7 +143,7 @@ jobs:
       id: tag
       if: inputs.release == true && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H:%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H.%M")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "${{ inputs.record }}" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
