@@ -2,7 +2,7 @@
 
 区分OpenWrt和lede版本
 
-附加外部软件openclash和adguardhome
+附加外部 源软件openclash和adguardhome
 
 
 ---
@@ -18,4 +18,4 @@
 - Others
 ## License
 
-[MIT](https://github.com/AoThen/Actions-OpenWrt-AX6S/blob/main/LICENSE) © 
+[MIT](https://github.com/AoThen/Actions-OpenWrt-AX6S/blob/main/LICENSE) 
