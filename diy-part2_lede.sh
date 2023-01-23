@@ -18,13 +18,15 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 #修改主机名
 # sed -i 's/OpenWrt/Xiaomi-AX6S/g' package/base-files/files/bin/config_generate
 
-# rm -r package/lean/luci-theme-argon
+#删除原默认主题
+rm -r package/lean/luci-theme-argon
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Makefile
 
 #添加额外软件包
-# git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
 git clone https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-
+git clone https://github.com/jerrykuku/lua-maxminddb.git package/lua-maxminddb
+git clone https://github.com/jerrykuku/luci-app-vssr.git package/luci-app-vssr
 
 #取消原主题luci-theme-bootstrap为默认主题
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
