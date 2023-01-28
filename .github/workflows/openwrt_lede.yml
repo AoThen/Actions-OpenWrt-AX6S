@@ -27,7 +27,7 @@ on:
       record:
         description: '输入版本描述'     
         required: false
-        default: '升级内容：内核升级，更新应用版本'
+        default: 'openclash+passwall+argon主题+adguardhome'
         type: string
       release:
         description: '上传到release'

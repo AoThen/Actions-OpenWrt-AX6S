@@ -4,6 +4,7 @@
 
 附加外部 源软件openclash和adguardhome
 
+main为稳定版，Plus为测试版
 
 ---
 
