@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt AX6S (lede仓库)
+name: Build OpenWrt AX6S (lede仓库) sysupgrade
 # 触发工作流程的事件
 # on:
 #   push:
@@ -27,7 +27,7 @@ on:
       record:
         description: '输入版本描述'     
         required: false
-        default: 'openclash+argon主题+adguardhome+passwall'
+        default: 'openclash+argon+adguardhome+helloworld+passwall'
         type: string
       release:
         description: '上传到release'

@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt AX6S (lede仓库) 2
+name: Build OpenWrt AX6S (lede仓库) factory
 # 触发工作流程的事件
 # on:
 #   push:
@@ -27,7 +27,7 @@ on:
       record:
         description: '输入版本描述'     
         required: false
-        default: 'openclash+argon主题+adguardhome+helloworld'
+        default: 'openclash+argon+adguardhome+helloworld+passwall'
         type: string
       release:
         description: '上传到release'
@@ -40,7 +40,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: AX6S_lede2.config
-  DIY_P1_SH: diy-part1_lede2.sh
+  DIY_P1_SH: diy-part1_lede.sh
   DIY_P2_SH: diy-part2_lede.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
