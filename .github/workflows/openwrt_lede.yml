@@ -27,7 +27,7 @@ on:
       record:
         description: '输入版本描述'     
         required: false
-        default: 'openclash+argon+adguardhome+helloworld+passwall'
+        default: 'helloworld+passwall'
         type: string
       release:
         description: '上传到release'
