@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt AX6S (lede仓库) sysupgrade
+name: Build OpenWrt AX6S (lede仓库) 稳定版
 
 on:
   repository_dispatch:
@@ -17,7 +17,7 @@ on:
       record:
         description: "输入版本描述"
         required: false
-        default: "helloworld+passwall"
+        default: "openclash+adguardhome"
         type: string
       verx:
         description: "版本号"
@@ -34,8 +34,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: AX6S_lede.config
-  DIY_P1_SH: diy-part1_lede.sh
+  CONFIG_FILE: AX6S_lede3.config
+  DIY_P1_SH: diy-part1_lede_mini.sh
   DIY_P2_SH: diy-part2_lede.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -138,30 +138,27 @@ jobs:
         if: steps.organize.outputs.status == 'success' && !cancelled()
         with:
           name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-          path: |
-            ${{ env.FIRMWARE }}
-            !${{ env.FIRMWARE }}/*factory.bin
-            !${{ env.FIRMWARE }}/*recovery.itb
+          path: ${{ env.FIRMWARE }}
 
-      # - name: Generate release tag
-      #   id: tag
-      #   if: inputs.release == true && inputs.verx =='' && !cancelled()
-      #   run: |
-
-      #     echo "release_tag=$(date +"%Y.%m.%d-%H.%M")" >> $GITHUB_OUTPUT
-      #     touch release.txt
-      #     echo "${{ inputs.record }}" >> release.txt
-      #     echo "status=success" >> $GITHUB_OUTPUT
-
-      - name: Generate release tag2
+      - name: Generate release tag
         id: tag
-        if: inputs.verx !='' &&!cancelled()
+        if: inputs.release == true && inputs.verx =='' &&!cancelled()
         run: |
 
-          echo "release_tag=${{ inputs.verx }}" >> $GITHUB_OUTPUT
+          echo "release_tag=$(date +"%Y.%m.%d-%H.%M")${{ inputs.verx }}" >> $GITHUB_OUTPUT
           touch release.txt
           echo "${{ inputs.record }}" >> release.txt
           echo "status=success" >> $GITHUB_OUTPUT
+
+      # - name: Generate release tag
+      #   id: tag
+      #   if: inputs.verx !='' &&!cancelled()
+      #   run: |
+
+      #     echo "release_tag=${{ inputs.verx }}" >> $GITHUB_OUTPUT
+      #     touch release.txt
+      #     echo "${{ inputs.record }}" >> release.txt
+      #     echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Upload firmware to release
         uses: softprops/action-gh-release@v1
@@ -171,22 +168,4 @@ jobs:
         with:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: |
-            ${{ env.FIRMWARE }}
-            !${{ env.FIRMWARE }}/*factory.bin
-            !${{ env.FIRMWARE }}/*recovery.itb
-
-    # - name: Delete workflow runs
-    #   uses: GitRML/delete-workflow-runs@main
-    #   with:
-    #     retain_days: 1
-    #     keep_minimum_runs: 5
-
-    # - name: Remove old Releases
-    #   uses: dev-drprasad/delete-older-releases@v0.1.0
-    #   if: env.Remove_Old_RELEASE == 'true' && !cancelled()
-    #   with:
-    #     keep_latest: 5
-    #     delete_tags: true
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.RELEASE_FIRMWARE }}
+          files: ${{ env.FIRMWARE }}/*
