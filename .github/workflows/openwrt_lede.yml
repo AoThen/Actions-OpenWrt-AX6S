@@ -29,6 +29,11 @@ on:
         required: false
         default: 'helloworld+passwall'
         type: string
+      verx:
+        description: '版本号'     
+        required: false
+        default: 'beta'
+        type: string
       release:
         description: '上传到release'
         required: false
@@ -175,13 +180,24 @@ jobs:
 
     - name: Generate release tag
       id: tag
-      if: inputs.release == true && !cancelled()
+      if: inputs.release == true && inputs.verx =='' && !cancelled()
       run: |
 
         echo "release_tag=$(date +"%Y.%m.%d-%H.%M")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "${{ inputs.record }}" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Generate release tag2
+      id: tag
+      if: inputs.verx !='' &&!cancelled()
+      run: |
+
+        echo "release_tag=${{ inputs.verx }}" >> $GITHUB_OUTPUT
+        touch release.txt
+        echo "${{ inputs.record }}" >> release.txt
+        echo "status=success" >> $GITHUB_OUTPUT
+
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
