@@ -1,10 +1,12 @@
 # Actions-OpenWrt-AX6S 自用编译版
 
-区分OpenWrt和lede版本
+区分OpenWrt和lede版本，lede版本有MU-MIMO
 
-附加外部 源软件openclash和adguardhome
+外部源openclash和adguardhome
 
-main为稳定版，Plus为测试版
+建议关闭adguardhome统计功能，会不断占用空间
+
+main为保守稳定版，Plus为测试版
 
 ---
 
