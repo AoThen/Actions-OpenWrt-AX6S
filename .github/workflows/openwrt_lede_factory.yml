@@ -22,7 +22,7 @@ on:
       verx:
         description: "版本号"
         required: false
-        default: "beta"
+        default: "factory"
         type: string
       release:
         description: "上传到release"

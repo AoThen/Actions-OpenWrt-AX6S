@@ -22,7 +22,7 @@ on:
       verx:
         description: "版本号"
         required: false
-        default: "beta"
+        default: "mini"
         type: string
       release:
         description: "上传到release"
@@ -140,25 +140,25 @@ jobs:
           name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
           path: ${{ env.FIRMWARE }}
 
-      - name: Generate release tag
-        id: tag
-        if: inputs.release == true && inputs.verx =='' &&!cancelled()
-        run: |
-
-          echo "release_tag=$(date +"%Y.%m.%d-%H.%M")${{ inputs.verx }}" >> $GITHUB_OUTPUT
-          touch release.txt
-          echo "${{ inputs.record }}" >> release.txt
-          echo "status=success" >> $GITHUB_OUTPUT
-
       # - name: Generate release tag
       #   id: tag
-      #   if: inputs.verx !='' &&!cancelled()
+      #   if: inputs.release == true && inputs.verx =='' &&!cancelled()
       #   run: |
 
-      #     echo "release_tag=${{ inputs.verx }}" >> $GITHUB_OUTPUT
+      #     echo "release_tag=$(date +"%Y.%m.%d-%H.%M")${{ inputs.verx }}" >> $GITHUB_OUTPUT
       #     touch release.txt
       #     echo "${{ inputs.record }}" >> release.txt
       #     echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Generate release tag
+        id: tag
+        if: inputs.verx !='' &&!cancelled()
+        run: |
+
+          echo "release_tag=${{ inputs.verx }}" >> $GITHUB_OUTPUT
+          touch release.txt
+          echo "${{ inputs.record }}" >> release.txt
+          echo "status=success" >> $GITHUB_OUTPUT
 
       - name: Upload firmware to release
         uses: softprops/action-gh-release@v1
