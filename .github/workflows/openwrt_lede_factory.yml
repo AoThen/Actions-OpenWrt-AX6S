@@ -34,7 +34,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: AX6S_lede2.config
+  CONFIG_FILE: AX6S_lede_factory.config
   DIY_P1_SH: diy-part1_lede.sh
   DIY_P2_SH: diy-part2_lede.sh
   UPLOAD_BIN_DIR: false
