@@ -172,9 +172,13 @@ jobs:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
           files: |
-            ${{ env.FIRMWARE }}/*
-            !${{ env.FIRMWARE }}/*factory.bin
-            !${{ env.FIRMWARE }}/*recovery.itb
+              ${{ env.FIRMWARE }}/*-squashfs-sysupgrade.bin
+              ${{ env.FIRMWARE }}/*.manifest
+              ${{ env.FIRMWARE }}/config.buildinfo
+              ${{ env.FIRMWARE }}/feeds.buildinfo
+              ${{ env.FIRMWARE }}/profiles.json
+              ${{ env.FIRMWARE }}/sha256sums
+              ${{ env.FIRMWARE }}/version.buildinfo
 
     # - name: Delete workflow runs
     #   uses: GitRML/delete-workflow-runs@main
