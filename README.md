@@ -1,10 +1,14 @@
 # Actions-OpenWrt-AX6S 自用编译版
 
-区分OpenWrt和lede版本，lede版本有MU-MIMO，目前以lede版本为主
+默认入口192.168.10.1
+
+默认账号密码admin/password
+
+区分OpenWrt和lede版本，lede版本有MU-MIMO，目前自用以lede版本为主
 
 默认带外部源openclash和adguardhome
 
-建议关闭adguardhome统计功能，会不断占用空间
+**建议关闭adguardhome统计功能，会不断占用空间**
 
 设置adguardhome作为dnsmasq的上游服务器或者 (重定向53)
 

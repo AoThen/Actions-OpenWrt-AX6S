@@ -22,7 +22,7 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 # sed -i "s/${orig_version}/R${date_version} by AoThen/g" package/lean/default-settings/files/zzz-default-settings
 
 #替换aliyundrive-webdav高版本
-sed -i 's/1.10.3/1.10.6/g' feeds/packages/multimedia/aliyundrive-webdav/Makefile
+# sed -i 's/1.10.3/1.10.6/g' feeds/packages/multimedia/aliyundrive-webdav/Makefile
 
 
 #删除原默认主题
