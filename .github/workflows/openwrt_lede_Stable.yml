@@ -164,10 +164,11 @@ jobs:
       - name: Upload firmware to release
         uses: softprops/action-gh-release@v1
         if: steps.tag.outputs.status == 'success' && !cancelled()
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_FIRMWARE }}
         with:
           name: ${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.release_name }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
           files: ${{ env.FIRMWARE }}/*
+          
+          # env:
+          #   GITHUB_TOKEN: ${{ secrets.RELEASE_FIRMWARE }}

@@ -14,8 +14,11 @@
 
 上游DNS设置为 >> 127.0.0.1:7874（clash的dns端口）
 
-main为保守稳定版，Plus为测试版
+main为保守稳定版，Plus为测试最新版
 
+软件包过多的话,拆为sysupgrade和factory,否则无法导入
+
+Failed to get erase block status 》》固件不能大于30MB
 ---
 
 ## Thanks for 
